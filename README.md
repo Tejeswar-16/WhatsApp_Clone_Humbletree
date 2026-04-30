@@ -4,33 +4,59 @@ A full-stack WhatsApp Web clone built using React, Node.js, Express, and MongoDB
 
 ------------------------------------------------------------------------------------------------
 
+## Features
+------------------------------------------------------------------------------------------------
+
+- Real-time chat UI
+- One-to-one messaging
+- WhatsApp-like interface
+- Chat sidebar with users
+- Last message preview
+- Auto scroll to latest message
+- Timestamp display
+- Search users
+- Responsive design
+
+------------------------------------------------------------------------------------------------
+
+## Tech Stack
+------------------------------------------------------------------------------------------------
+
+- React.js
+- Node.js
+- Express.js
+- MongoDB
+- Axios
+- Tailwind CSS
+
+------------------------------------------------------------------------------------------------
+
 ## Setup Development
 ------------------------------------------------------------------------------------------------
 
+------------------------------------------------------------------------------------------------
 ## Tech Setup
 ------------------------------------------------------------------------------------------------
 
 1. Fork the repo and clone the forked repo.
 2. Install the latest LTS version of Node.js from https://nodejs.org/en in your machine.
 
----
+------------------------------------------------------------------------------------------------
 
 ## Backend Setup
 ------------------------------------------------------------------------------------------------
 
 1. Navigate to backend folder:
+
 ```bash
 cd backend
 
-2. Install dependencies:
-```bash
+Install dependencies:
 npm install
 
-3. Create a .env file in the backend root directory:
-```bash
+Create a .env file in the backend root directory:
 PORT=3001
 MONGO_URI=your_mongodb_connection_string
 
 Start backend server:
-```bash
 node server.js
