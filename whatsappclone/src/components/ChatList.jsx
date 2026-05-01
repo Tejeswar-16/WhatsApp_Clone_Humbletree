@@ -104,7 +104,7 @@ export default function ChatList(props) {
                   </h1>
                 </div>
                 <div className="flex items-center pl-4">
-                  <h1 className="text-sm font-sans">{lastMessages[user._id]?.message || ""}</h1>
+                  <h1 className="text-sm font-sans truncate w-80">{lastMessages[user._id]?.message || ""}</h1>
                 </div>
               </div>
             </div>

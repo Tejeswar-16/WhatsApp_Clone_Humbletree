@@ -20,7 +20,10 @@ export default function Register(){
             navigate('/login');
         }
         catch(error){
-            setAlertMessage(error.response.data.error);
+            if (!error.response)
+                setAlertMessage("Network Error: Check if backend is running");
+            else
+                setAlertMessage(error.response.data.message);
         }
         finally{
             setName("");

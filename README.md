@@ -84,3 +84,6 @@ The app will open at http://localhost:5173/.
 
 ## Authentication Page
 ![alt text](image-1.png)
+
+## Chat Interface
+![alt text](image-2.png)

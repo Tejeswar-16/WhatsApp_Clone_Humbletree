@@ -5,7 +5,7 @@ const register = async (req,res) => {
         const {name,email,password} = req.body;
         const user = await Auth.findOne({email: email});
         if (user)
-            return res.status(401).json({"error":"User already exists"});
+            return res.status(401).json({"message":"User already exists"});
         const newUser = new Auth({name,email,password});
         await newUser.save();
         res.status(201).json({"message":"User created successfully"});
@@ -22,7 +22,7 @@ const login = async (req,res) => {
         if (user)
             res.status(200).json({"message":"Login successful",user});
         else
-            res.status(400).json({"error": "Invalid email or password"});
+            res.status(400).json({"message": "Invalid email or password"});
     }
     catch(error){
         console.log(error);
