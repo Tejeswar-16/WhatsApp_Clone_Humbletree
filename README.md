@@ -78,3 +78,6 @@ npm install
 npm run dev
 ```
 The app will open at http://localhost:5173/.
+
+## Folder Structure
+![alt text](image.png)
