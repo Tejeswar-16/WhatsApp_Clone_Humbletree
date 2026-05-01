@@ -15,7 +15,6 @@ A full-stack WhatsApp Web clone built using React, Node.js, Express, and MongoDB
 - Auto scroll to latest message
 - Timestamp display
 - Search users
-- Responsive design
 
 ------------------------------------------------------------------------------------------------
 
@@ -50,13 +49,21 @@ A full-stack WhatsApp Web clone built using React, Node.js, Express, and MongoDB
 
 ```bash
 cd backend
+```
 
-Install dependencies:
+2. Install dependencies:
+```bash
 npm install
+```
 
-Create a .env file in the backend root directory:
+3. Create a .env file in the backend root directory:
+```
 PORT=3001
 MONGO_URI=your_mongodb_connection_string
+```
 
-Start backend server:
+4. Start backend server:
+
+```bash
 node server.js
+```
