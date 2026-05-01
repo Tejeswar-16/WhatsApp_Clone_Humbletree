@@ -62,9 +62,9 @@ DB Connected
 
 ## Frontend Setup
 
-7. Navigate to whatsappclone folder (which is the frontend folder)
+7. Open new terminal and navigate to whatsappclone folder (which is the frontend folder).
+   NOTE: Do not close the backend terminal
 ```bash
-cd ..
 cd whatsappclone
 ```
 
