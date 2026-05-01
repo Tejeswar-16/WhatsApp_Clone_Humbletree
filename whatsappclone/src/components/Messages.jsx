@@ -12,6 +12,8 @@ export default function ChatList(props){
     const [message,setMessage] = useState("");
     const [chat,setChat] = useState([]);
     const [senderName,setSenderName] = useState("");
+    const [searchChat,setSearchChat] = useState("");
+    const [searchClicked,setSearchedClicked] = useState(false);
 
     const params = useParams();
     const senderId = params.id;
@@ -73,7 +75,9 @@ export default function ChatList(props){
     async function getChat(){
         try{
             const response = await axios.post("http://localhost:3001/api/getChat",{senderId,receiverId});
-            setChat(response.data);
+            let chatResponse = response.data;
+            chatResponse = chatResponse.filter((cr) => (cr.message).toLocaleLowerCase().includes(searchChat.toLocaleLowerCase()))
+            setChat(chatResponse);
             const chatList = response.data;
             if (chatList.length > 0){
                 const last = chatList[chatList.length - 1]
@@ -86,7 +90,7 @@ export default function ChatList(props){
     }
     useEffect(() => {
         getChat();
-    },[senderId,receiverId]);
+    },[senderId,receiverId,searchChat]);
 
     return (
         <>
@@ -117,7 +121,8 @@ export default function ChatList(props){
                                         <h1 className="font-semibold text-2xl">{user && user.name}</h1>
                                     </div>
                                 </div>
-                                <div className="text-2xl cursor-pointer pr-5">
+                                {searchClicked && <input value={searchChat} onChange={(e) => setSearchChat(e.target.value)} className="ml-165 rounded-xl border border-gray-400 p-2" type="text" placeholder="Search"/>}
+                                <div onClick={() => setSearchedClicked(true)} className="text-2xl cursor-pointer pr-5">
                                     <IoSearchSharp />
                                 </div>
                             </div>
