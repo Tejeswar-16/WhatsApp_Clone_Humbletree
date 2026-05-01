@@ -81,3 +81,6 @@ The app will open at http://localhost:5173/.
 
 ## Folder Structure
 ![alt text](image.png)
+
+## Authentication Page
+![alt text](image-1.png)
