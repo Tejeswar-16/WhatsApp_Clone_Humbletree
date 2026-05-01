@@ -54,3 +54,25 @@ MONGO_URI=your_mongodb_connection_string
 ```bash
 node server.js
 ```
+You should see
+Server running on PORT 3001
+DB Connected
+
+## Frontend Setup
+
+7. Navigate to whatsappclone folder (which is the frontend folder)
+```bash
+cd ..
+cd whatsappclone
+```
+
+8. Install dependencies for frontend
+```bash
+npm install
+```
+
+9. Start the React development server
+```bash
+npm run dev
+```
+The app will open at http://localhost:5173/.
