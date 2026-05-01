@@ -36,29 +36,33 @@ A full-stack WhatsApp Web clone built using React, Node.js, Express, and MongoDB
 
 ## Tech Setup
 
-1. Fork the repo and clone the forked repo.
-2. Install the latest LTS version of Node.js from https://nodejs.org/en in your machine.
+1. Install the latest LTS version of Node.js from https://nodejs.org/en in your machine.
+2. Create a working directory in your machine and open that directory in your IDE.
+3. Clone this repo
+```bash
+git clone https://github.com/Tejeswar-16/WhatsApp_Clone_Humbletree.git
+```
 
 ## Backend Setup
 
-3. Navigate to backend folder:
+4. Navigate to backend folder:
 
 ```bash
 cd backend
 ```
 
-4. Install dependencies:
+5. Install dependencies:
 ```bash
 npm install
 ```
 
-5. Create a .env file in the backend root directory:
+6. Create a .env file in the backend root directory:
 ```
 PORT=3001
 MONGO_URI=your_mongodb_connection_string
 ```
 
-6. Start backend server:
+7. Start backend server:
 
 ```bash
 node server.js
@@ -71,18 +75,18 @@ DB Connected
 
 ## Frontend Setup
 
-7. Open new terminal and navigate to whatsappclone folder (which is the frontend folder).
+8. Open new terminal and navigate to whatsappclone folder (which is the frontend folder).
    NOTE: Do not close the backend terminal
 ```bash
 cd whatsappclone
 ```
 
-8. Install dependencies for frontend
+9. Install dependencies for frontend
 ```bash
 npm install
 ```
 
-9. Start the React development server
+10. Start the React development server
 ```bash
 npm run dev
 ```
