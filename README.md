@@ -23,6 +23,15 @@ A full-stack WhatsApp Web clone built using React, Node.js, Express, and MongoDB
 - Axios
 - Tailwind CSS
 
+## Authentication Page
+![alt text](image-1.png)
+
+## Chat Interface
+![alt text](image-3.png)
+
+## Folder Structure
+![alt text](image.png)
+
 ## Setup Development
 
 ## Tech Setup
@@ -78,12 +87,3 @@ npm install
 npm run dev
 ```
 The app will open at http://localhost:5173/.
-
-## Folder Structure
-![alt text](image.png)
-
-## Authentication Page
-![alt text](image-1.png)
-
-## Chat Interface
-![alt text](image-3.png)
