@@ -55,8 +55,10 @@ MONGO_URI=your_mongodb_connection_string
 node server.js
 ```
 You should see
+```bash
 Server running on PORT 3001
 DB Connected
+```
 
 ## Frontend Setup
 
