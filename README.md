@@ -48,7 +48,7 @@ git clone https://github.com/Tejeswar-16/WhatsApp_Clone_Humbletree.git
 4. Navigate to backend folder:
 
 ```bash
-cd backend
+cd WhatsApp_Clone_Humbletree/backend
 ```
 
 5. Install dependencies:
@@ -78,7 +78,7 @@ DB Connected
 8. Open new terminal and navigate to whatsappclone folder (which is the frontend folder).
    NOTE: Do not close the backend terminal
 ```bash
-cd whatsappclone
+cd WhatsApp_Clone_Humbletree/whatsappclone
 ```
 
 9. Install dependencies for frontend
@@ -91,3 +91,9 @@ npm install
 npm run dev
 ```
 The app will open at http://localhost:5173/.
+You can now register and then login.
+
+## NOTE:
+Initially, you will be seeing "No Chats Found" since you are the only user logged in.
+Logout and then login as another user using different email and password. Now open two
+tabs each logged in with different users. Then try sending messages from one to another.
