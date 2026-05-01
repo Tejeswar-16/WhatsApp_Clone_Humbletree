@@ -88,8 +88,12 @@ export default function ChatList(props){
             alert(error);
         }
     }
+
     useEffect(() => {
-        getChat();
+        const interval = setInterval(() => {
+            getChat();
+        },1000);
+        return () => clearInterval(interval);
     },[senderId,receiverId,searchChat]);
 
     return (
