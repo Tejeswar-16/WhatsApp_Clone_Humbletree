@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoSend } from "react-icons/io5";
 import { useParams } from "react-router-dom";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 export default function ChatList(props){
 
@@ -14,6 +15,12 @@ export default function ChatList(props){
     const [senderName,setSenderName] = useState("");
     const [searchChat,setSearchChat] = useState("");
     const [searchClicked,setSearchedClicked] = useState(false);
+    const [openIndex, setOpenIndex] = useState(null);
+    const [editClicked,setEditClicked] = useState(false);
+    const [editMessage,setEditMessage] = useState("");
+    const [editId,setEditId] = useState("");
+    const [deleteClicked,setDeleteClicked] = useState(false);
+    const [deleteId,setDeleteId] = useState("");
 
     const params = useParams();
     const senderId = params.id;
@@ -96,6 +103,40 @@ export default function ChatList(props){
         return () => clearInterval(interval);
     },[senderId,receiverId,searchChat]);
 
+    async function handleEdit(e){
+        e.preventDefault();
+        try{
+            const response = await axios.put(`http://localhost:3001/api/editChat/${editId}`,{message: editMessage});
+            setEditClicked(false);
+            getChat();setOpenIndex(null);
+        }
+        catch(error){
+            alert(error);
+        }
+    };
+
+    async function handleMeDelete(){
+        try{
+            const response = await axios.put(`http://localhost:3001/api/deleteme/${deleteId}`,{senderId});
+            setDeleteClicked(false);
+            getChat();setOpenIndex(null);
+        }   
+        catch(error){
+            alert(error);
+        }
+    }
+
+    async function handleAllDelete(){
+        try{
+            const response = await axios.put(`http://localhost:3001/api/deleteall/${deleteId}`,{senderId,receiverId});
+            setDeleteClicked(false);
+            getChat();setOpenIndex(null);
+        }   
+        catch(error){
+            alert(error);
+        }
+    }
+
     return (
         <>
             <div className="bg-[#F2EFE9] h-full bg-[url('/doodle.png')] bg-repeat">
@@ -137,7 +178,25 @@ export default function ChatList(props){
                                         chat.map((c,index) => (
                                             <div key={index} className={c.senderId === params.id ? "flex justify-end mb-2" : "flex justify-start mb-2"}>
                                                 <div className="flex flex-col max-w-[60%]">
-                                                    <div className={c.senderId === params.id ? "relative px-3 py-2 pb-5 min-w-[60px] rounded-2xl break-words bg-[#D9FDD3] rounded-br-none" : "relative px-3 py-2 pb-5 min-w-[60px] rounded-2xl break-words bg-white text-black rounded-bl-none"}>{c.message}
+                                                    <div className={c.senderId === params.id ? `relative px-3 py-2 pb-5 min-w-[60px] rounded-2xl break-words rounded-br-none ${c.deletedFor.includes(senderId) ? "bg-[#D9FDD3] italic" : "bg-[#D9FDD3]"}` : `relative px-3 py-2 pb-5 min-w-[60px] rounded-2xl break-words rounded-bl-none ${c.deletedFor.includes(senderId) ? "bg-white italic text-black" : "bg-white text-black"}`}>{c.deletedFor.includes(senderId) ? "🛇 This message was deleted" : c.message}
+                                                        {c.senderId === params.id && (
+                                                            <div className="absolute top-1 right-1">
+                                                                <button onClick={() => setOpenIndex(openIndex === index ? null : index)} className="text-xl px-1">
+                                                                    <RiArrowDropDownLine />
+                                                                </button>
+
+                                                                {openIndex === index && (
+                                                                    <div className="absolute right-0 mt-1 w-24 bg-white border rounded shadow-md z-20">
+                                                                        <button className="block w-full text-left px-3 py-1 hover:bg-gray-100" onClick={() => {setEditClicked(true);setEditMessage(c.message);setEditId(c._id)}}>
+                                                                            Edit
+                                                                        </button>
+                                                                        <button className="block w-full text-left px-3 py-1 hover:bg-gray-100" onClick={() => {setDeleteClicked(true);setDeleteId(c._id)}}>
+                                                                            Delete
+                                                                        </button>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )}
                                                         <span className="absolute bottom-1 right-2 text-[10px] text-gray-500">
                                                             {new Date(c.time).toLocaleTimeString([], {
                                                                 hour: "2-digit",
@@ -158,6 +217,36 @@ export default function ChatList(props){
                                 </form>
                             </div>
                         </div>
+                }
+                {
+                    editClicked&& 
+                    <div className="fixed inset-0 z-50 flex flex-col justify-center backdrop-blur-sm items-center">
+                        <div className="select-none font-sans bg-gray-100 border border-gray-400 shadow-xl shadow-gray-400 p-4 w-90 rounded-xl ">
+                            <div className="flex flex-row justify-between">
+                                <h1 className="font-semibold mb-4">Edit Message</h1>
+                                <h1 className="hover:cursor-pointer" onClick={() => setEditClicked(false)}>❌</h1>
+                            </div>
+                            <form className="flex items-center gap-x-3 w-full border rounded-xl p-1" onSubmit={(e) => handleEdit(e)}>
+                                <input required value={editMessage} onChange={(e) => setEditMessage(e.target.value)} className="flex-1 p-2 text-lg rounded-xl focus:outline-none" type="text" placeholder="Type a message"/>
+                                <button type="submit"><IoSend className="text-2xl text-green-600 cursor-pointer" /></button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                {
+                    deleteClicked&& 
+                    <div className="fixed inset-0 z-50 flex flex-col justify-center backdrop-blur-sm items-center">
+                        <div className="select-none font-sans bg-gray-100 border border-gray-400 shadow-xl shadow-gray-400 p-4 w-100 rounded-xl ">
+                            <div className="flex flex-row justify-between">
+                                <h1 className="font-semibold mb-4">Delete Message</h1>
+                                <h1 className="hover:cursor-pointer" onClick={() => setDeleteClicked(false)}>❌</h1>
+                            </div>
+                            <div className="flex justify-center items-center gap-x-3 w-full rounded-xl p-1">
+                                <button onClick={handleMeDelete} className="bg-red-500 border border-black hover:cursor-pointer text-white rounded-xl p-2 w-50">Delete for me</button>
+                                <button onClick={handleAllDelete} className="bg-red-500 border border-black hover:cursor-pointer text-white rounded-xl p-2 w-50">Delete for everyone</button>
+                            </div>
+                        </div>
+                    </div>
                 }
             </div>
         </>

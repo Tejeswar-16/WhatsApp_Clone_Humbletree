@@ -5,7 +5,8 @@ const chatSchema = new mongoose.Schema({
     receiverId: {type:String,required:true},
     senderName: {type:String,required:true},
     message: {type:String,required:true},
-    time: {type:Date,default:Date.now}
+    time: {type:Date,default:Date.now},
+    deletedFor: {type:[String],default:[]}
 });
 
 const Chat = mongoose.model('Chat',chatSchema);

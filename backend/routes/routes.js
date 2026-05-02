@@ -10,5 +10,8 @@ router.get('/getUsers/:id',authController.getUsers);
 router.get('/getUserById/:id',authController.getUserById);
 router.post('/sendMessage',chatController.sendMessage);
 router.post('/getChat',chatController.getChat);
+router.put('/editChat/:id',chatController.editChat);
+router.put('/deleteme/:id',chatController.deleteMeChat);
+router.put('/deleteall/:id',chatController.deleteAllChat);
 
 module.exports = router;
